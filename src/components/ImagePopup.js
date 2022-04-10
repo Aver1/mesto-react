@@ -1,6 +1,6 @@
 function ImagePopup (props) {
   return (
-    <section className={`popup popup_type_image ${props.card.length !== 0 ? 'popup_opened' : ''}`}>
+    <section className={`popup popup_type_image ${props.card.name !== undefined ? 'popup_opened' : ''}`}>
       <figure className="popup__image-container">
         <img className="popup__card-image" src={props.card.link  ? props.card.link : '#'} alt={props.card.name}/>
         <figcaption className="popup__image-caption">{props.card.name}</figcaption>

@@ -10,10 +10,10 @@ function App() {
   const [isEditAvatarPopupOpen, setAvatarState] = React.useState(false);
   const [isEditProfilePopupOpen, setProfileState] = React.useState(false);
   const [isAddPlacePopupOpen, setPlaceState] = React.useState(false);
-  const [selectedCard, setCardState] = React.useState([]);
+  const [selectedCard, setCardState] = React.useState({});
 
   function handleCardClick (card) {
-    setCardState(...selectedCard, card);
+    setCardState(card);
   }
 
   function handleEditAvatarClick () {
@@ -29,29 +29,33 @@ function App() {
     setAvatarState(false);
     setProfileState(false);
     setPlaceState(false);
-    setCardState([]);
+    setCardState({});
   }
 
   return (
     <div>
       <Header />
-      <Main onEditProfile={handleEditProfileClick} onAddPlace={handleAddPlaceClick} onEditAvatar={handleEditAvatarClick} onCardClick={handleCardClick}>
+      <Main 
+        onEditProfile={handleEditProfileClick} 
+        onAddPlace={handleAddPlaceClick} 
+        onEditAvatar={handleEditAvatarClick} 
+        onCardClick={handleCardClick}>
         {/* Попап обновления аватара */}
-        <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="avatar" title="Обновить аватар" isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
           <input className="popup__input popup__input_type_avatar-link" id="avatar-name-input" type="url" minLength="2" placeholder="Ссылка" defaultValue="" name="popup-link" required/>
           <span className="popup__input-error avatar-name-input-error"></span>
         </PopupWithForm>
         {/* Попап удаления картинки */}
-        <PopupWithForm name="card-delete-confirm" title="Вы уверены?" />
+        <PopupWithForm name="card-delete-confirm" title="Вы уверены?" buttonText="Да"/>
         {/* Попап редактирования */}
-        <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="edit" title="Редактировать профиль" isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
           <input className="popup__input popup__input_type_name" id="edit-name-input" type="text" minLength="2" maxLength="40" placeholder="Имя" defaultValue="" name="popup-name" required/>
           <span className="popup__input-error edit-name-input-error"></span>
           <input className="popup__input popup__input_type_about" id="edit-about-input" type="text" minLength="2" maxLength="200" placeholder="О себе" defaultValue="" name="popup-about" required/>
           <span className="popup__input-error edit-about-input-error"></span>
         </PopupWithForm>
         {/* Попап добавления */}
-        <PopupWithForm name="add" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups}>
+        <PopupWithForm name="add" title="Новое место" isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} buttonText="Сохранить">
           <input className="popup__input popup__input_type_card-name" id="add-name-input" type="text" minLength="2" maxLength="30" placeholder="Название" defaultValue="" name="popup-name" required/>
           <span className="popup__input-error add-name-input-error"></span>
           <input className="popup__input popup__input_type_card-link" id="add-link-input" type="url" placeholder="Ссылка на картинку" defaultValue="" name="popup-link" required/>
@@ -61,19 +65,6 @@ function App() {
         <ImagePopup card={selectedCard} onClose={closeAllPopups}/>
       </Main>
       <Footer />
-      <template id="card-template">
-        <div className="card">
-          <button className="card__delete"></button>
-          <img className="card__image" src="#" alt="#"/>
-          <div className="card__container">
-            <h2 className="card__title"></h2>
-            <div className="card__like-group">
-              <button className="card__like" type="button"></button>
-              <span className="card__like-count">5</span>
-            </div>
-          </div>
-        </div>
-      </template>
     </div>
   );
 }

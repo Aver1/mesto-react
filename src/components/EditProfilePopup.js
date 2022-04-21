@@ -11,7 +11,7 @@ function EditProfilePopup (props) {
   React.useEffect(() => {
     changeName(currentUser.name);
     changeDescription(currentUser.about);
-  }, [currentUser]);
+  }, [currentUser, props.isOpen]);
 
   function handleSubmit(e) {
     // Запрещаем браузеру переходить по адресу формы
@@ -34,9 +34,9 @@ function EditProfilePopup (props) {
 
   return (
     <PopupWithForm name="edit" title="Редактировать профиль" isOpen={props.isOpen} onClose={props.onClose} buttonText="Сохранить" onSubmit={handleSubmit}>
-      <input className="popup__input popup__input_type_name" id="edit-name-input" onChange={handleNameChange} type="text" minLength="2" maxLength="40" placeholder="Имя" defaultValue={name} name="popup-name" required/>
+      <input className="popup__input popup__input_type_name" id="edit-name-input" onChange={handleNameChange} type="text" minLength="2" maxLength="40" placeholder="Имя" value={ name || ''} name="popup-name" required/>
       <span className="popup__input-error edit-name-input-error"></span>
-      <input className="popup__input popup__input_type_about" id="edit-about-input" onChange={handleDescriptionChange} type="text" minLength="2" maxLength="200" placeholder="О себе" defaultValue={description} name="popup-about" required/>
+      <input className="popup__input popup__input_type_about" id="edit-about-input" onChange={handleDescriptionChange} type="text" minLength="2" maxLength="200" placeholder="О себе" value={description || ''} name="popup-about" required/>
       <span className="popup__input-error edit-about-input-error"></span>
     </PopupWithForm>
   );

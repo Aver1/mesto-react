@@ -1,0 +1,20 @@
+.authorization__submit {
+  border: none;
+  margin: 216px 0 0;
+  width: 100%;
+  height: 50px;
+  border-radius: 2px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 700px) {
+  .authorization__submit {
+    margin: 173px 0 0;
+    font-size: 16px;
+    line-height: 19px;
+  }
+}

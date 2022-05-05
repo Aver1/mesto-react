@@ -1,0 +1,22 @@
+.authorization__input {
+  margin: 0 0 30px;
+  width: 100%;
+  padding: 0;
+  border: none;
+  border-bottom: 2px solid #CCCCCC;
+  height: 27px;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #CCCCCC;
+  background-color: black;
+}
+.authorization__input::placeholder {
+  transform: translateY(-6px);
+  color: #CCCCCC;
+}
+
+.authorization__input:last-of-type {
+  margin-bottom: 0;
+}
